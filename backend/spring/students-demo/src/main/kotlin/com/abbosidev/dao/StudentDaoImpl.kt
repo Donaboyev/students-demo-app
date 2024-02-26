@@ -2,13 +2,17 @@ package com.abbosidev.dao
 
 import com.abbosidev.entity.Student
 import org.springframework.stereotype.Repository
+import java.util.UUID
 
-private val students = HashMap<Int, Student>().apply {
+private val students = HashMap<String, Student>().apply {
+    val firstId = UUID.randomUUID().toString()
+    val secondId = UUID.randomUUID().toString()
+    val thirdId = UUID.randomUUID().toString()
     this.putAll(
         mapOf(
-            1 to Student(1, "Abbas", "Computer Science"),
-            2 to Student(2, "Sarvar", "Maths"),
-            3 to Student(3, "Temur", "Physics"),
+            firstId to Student(firstId, "Abbas", "Computer Science"),
+            secondId to Student(secondId, "Sarvar", "Maths"),
+            thirdId to Student(thirdId, "Temur", "Physics"),
         )
     )
 }
@@ -21,11 +25,11 @@ class StudentDaoImpl : StudentDao {
         return students.values
     }
 
-    override fun getStudentById(id: Int): Student? {
+    override fun getStudentById(id: String): Student? {
         return students[id]
     }
 
-    override fun deleteStudentById(id: Int) {
+    override fun deleteStudentById(id: String) {
         if (students.containsKey(id)) {
             students.remove(id)
         }
@@ -37,12 +41,14 @@ class StudentDaoImpl : StudentDao {
                 name = student.name,
                 course = student.course
             )
-            students[student.id] = updated
+            students[student.id!!] = updated
         }
     }
 
     override fun insertNewStudent(student: Student) {
-        students[student.id] = student
+        val id = UUID.randomUUID().toString()
+        println("New student $id")
+        students[id] = student.copy(id = id)
     }
 
 }

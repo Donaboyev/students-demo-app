@@ -3,6 +3,7 @@ package com.abbosidev.controller
 import com.abbosidev.entity.Student
 import com.abbosidev.service.StudentService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/students")
+@CrossOrigin
 class StudentController {
 
     @Autowired
@@ -26,7 +28,7 @@ class StudentController {
     }
 
     @GetMapping("/{id}")
-    fun getStudentById(@PathVariable("id") id: Int): Student {
+    fun getStudentById(@PathVariable("id") id: String): Student {
         val student =
             studentService.getStudentById(id)
                 ?: throw RuntimeException("Student does not exist with this id!")
@@ -34,7 +36,7 @@ class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteStudentById(@PathVariable("id") id: Int) {
+    fun deleteStudentById(@PathVariable("id") id: String) {
         studentService.deleteStudentById(id)
     }
 
