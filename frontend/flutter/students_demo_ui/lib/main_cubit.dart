@@ -5,12 +5,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'student.dart';
+
 part 'main_cubit.freezed.dart';
 
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(const MainState());
+
+  Future<void> fetchAllStudents() async {
+    emit(state.copyWith(isAllStudentsLoading: true));
+    List<Student> students = [];
+    try {
+      final response = await http.get(
+        Uri.http('localhost:8080', '/students'),
+      );
+      final List<dynamic> jsonList = json.decode(response.body);
+      students = jsonList.map((e) => Student.fromJson(e)).toList();
+    } catch (e) {
+      debugPrint('Fetching all students error: $e');
+    }
+    emit(state.copyWith(isAllStudentsLoading: false, students: students));
+  }
 
   Future<void> saveNewUser(
     String name,
@@ -22,15 +39,14 @@ class MainCubit extends Cubit<MainState> {
     try {
       await http.post(
         Uri.http('localhost:8080', '/students'),
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body:jsonEncode( {
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
           'name': name.trim(),
           'course': course.trim(),
         }),
       );
       onSuccess?.call();
+      fetchAllStudents();
     } catch (e) {
       debugPrint('==> Failed $e');
     }

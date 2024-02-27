@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:students_demo_ui/main_cubit.dart';
+
+import 'main_cubit.dart';
 
 class AddNewStudentWidget extends StatefulWidget {
   const AddNewStudentWidget({super.key});
@@ -34,13 +35,13 @@ class _AddNewStudentWidgetState extends State<AddNewStudentWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'New student',
           style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
         Container(
-          constraints: BoxConstraints(maxWidth: 200),
+          constraints: const BoxConstraints(maxWidth: 200),
           child: Form(
             key: _formKey,
             child: Column(
@@ -54,7 +55,7 @@ class _AddNewStudentWidgetState extends State<AddNewStudentWidget> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Name',
                   ),
                 ),
@@ -67,11 +68,11 @@ class _AddNewStudentWidgetState extends State<AddNewStudentWidget> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Course',
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 BlocBuilder<MainCubit, MainState>(
                   builder: (context, state) {
                     final MainCubit cubit = context.read<MainCubit>();

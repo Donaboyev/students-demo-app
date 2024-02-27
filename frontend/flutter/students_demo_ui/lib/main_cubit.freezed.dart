@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MainState {
   bool get isNewStudentCreating => throw _privateConstructorUsedError;
+  bool get isAllStudentsLoading => throw _privateConstructorUsedError;
+  List<Student> get students => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainStateCopyWith<MainState> get copyWith =>
@@ -28,7 +30,10 @@ abstract class $MainStateCopyWith<$Res> {
   factory $MainStateCopyWith(MainState value, $Res Function(MainState) then) =
       _$MainStateCopyWithImpl<$Res, MainState>;
   @useResult
-  $Res call({bool isNewStudentCreating});
+  $Res call(
+      {bool isNewStudentCreating,
+      bool isAllStudentsLoading,
+      List<Student> students});
 }
 
 /// @nodoc
@@ -45,12 +50,22 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
   @override
   $Res call({
     Object? isNewStudentCreating = null,
+    Object? isAllStudentsLoading = null,
+    Object? students = null,
   }) {
     return _then(_value.copyWith(
       isNewStudentCreating: null == isNewStudentCreating
           ? _value.isNewStudentCreating
           : isNewStudentCreating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAllStudentsLoading: null == isAllStudentsLoading
+          ? _value.isAllStudentsLoading
+          : isAllStudentsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      students: null == students
+          ? _value.students
+          : students // ignore: cast_nullable_to_non_nullable
+              as List<Student>,
     ) as $Val);
   }
 }
@@ -63,7 +78,10 @@ abstract class _$$MainStateImplCopyWith<$Res>
       __$$MainStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isNewStudentCreating});
+  $Res call(
+      {bool isNewStudentCreating,
+      bool isAllStudentsLoading,
+      List<Student> students});
 }
 
 /// @nodoc
@@ -78,12 +96,22 @@ class __$$MainStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isNewStudentCreating = null,
+    Object? isAllStudentsLoading = null,
+    Object? students = null,
   }) {
     return _then(_$MainStateImpl(
       isNewStudentCreating: null == isNewStudentCreating
           ? _value.isNewStudentCreating
           : isNewStudentCreating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAllStudentsLoading: null == isAllStudentsLoading
+          ? _value.isAllStudentsLoading
+          : isAllStudentsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      students: null == students
+          ? _value._students
+          : students // ignore: cast_nullable_to_non_nullable
+              as List<Student>,
     ));
   }
 }
@@ -91,15 +119,30 @@ class __$$MainStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MainStateImpl implements _MainState {
-  const _$MainStateImpl({this.isNewStudentCreating = false});
+  const _$MainStateImpl(
+      {this.isNewStudentCreating = false,
+      this.isAllStudentsLoading = false,
+      final List<Student> students = const []})
+      : _students = students;
 
   @override
   @JsonKey()
   final bool isNewStudentCreating;
+  @override
+  @JsonKey()
+  final bool isAllStudentsLoading;
+  final List<Student> _students;
+  @override
+  @JsonKey()
+  List<Student> get students {
+    if (_students is EqualUnmodifiableListView) return _students;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_students);
+  }
 
   @override
   String toString() {
-    return 'MainState(isNewStudentCreating: $isNewStudentCreating)';
+    return 'MainState(isNewStudentCreating: $isNewStudentCreating, isAllStudentsLoading: $isAllStudentsLoading, students: $students)';
   }
 
   @override
@@ -108,11 +151,15 @@ class _$MainStateImpl implements _MainState {
         (other.runtimeType == runtimeType &&
             other is _$MainStateImpl &&
             (identical(other.isNewStudentCreating, isNewStudentCreating) ||
-                other.isNewStudentCreating == isNewStudentCreating));
+                other.isNewStudentCreating == isNewStudentCreating) &&
+            (identical(other.isAllStudentsLoading, isAllStudentsLoading) ||
+                other.isAllStudentsLoading == isAllStudentsLoading) &&
+            const DeepCollectionEquality().equals(other._students, _students));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isNewStudentCreating);
+  int get hashCode => Object.hash(runtimeType, isNewStudentCreating,
+      isAllStudentsLoading, const DeepCollectionEquality().hash(_students));
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +169,17 @@ class _$MainStateImpl implements _MainState {
 }
 
 abstract class _MainState implements MainState {
-  const factory _MainState({final bool isNewStudentCreating}) = _$MainStateImpl;
+  const factory _MainState(
+      {final bool isNewStudentCreating,
+      final bool isAllStudentsLoading,
+      final List<Student> students}) = _$MainStateImpl;
 
   @override
   bool get isNewStudentCreating;
+  @override
+  bool get isAllStudentsLoading;
+  @override
+  List<Student> get students;
   @override
   @JsonKey(ignore: true)
   _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
