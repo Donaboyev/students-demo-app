@@ -5,8 +5,14 @@ import 'student.dart';
 class StudentItem extends StatelessWidget {
   final Student student;
   final VoidCallback onTap;
+  final VoidCallback onDelete;
 
-  const StudentItem({super.key, required this.student, required this.onTap});
+  const StudentItem({
+    super.key,
+    required this.student,
+    required this.onTap,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,18 @@ class StudentItem extends StatelessWidget {
             '${student.course}',
             style: const TextStyle(fontSize: 18),
           ),
-          IconButton(onPressed: onTap, icon: const Icon(Icons.remove_red_eye))
+          Row(
+            children: [
+              IconButton(
+                onPressed: onTap,
+                icon: const Icon(Icons.remove_red_eye),
+              ),
+              IconButton(
+                onPressed: onDelete,
+                icon: const Icon(Icons.delete),
+              ),
+            ],
+          )
         ],
       ),
     );

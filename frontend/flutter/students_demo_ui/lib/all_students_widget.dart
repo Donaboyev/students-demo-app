@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:students_demo_ui/delete/delete_dialog.dart';
+import 'package:students_demo_ui/update/update_dialog.dart';
 
 import 'main_cubit.dart';
 import 'student_item.dart';
@@ -16,9 +19,11 @@ class _AllStudentsWidgetState extends State<AllStudentsWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
+        final MainCubit cubit = context.read<MainCubit>();
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 40),
             Row(
               children: [
                 const Text(
@@ -38,7 +43,32 @@ class _AllStudentsWidgetState extends State<AllStudentsWidget> {
                 itemBuilder: (context, index) {
                   return StudentItem(
                     student: state.students[index],
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return UpdateDialog(
+                            student: state.students[index],
+                            onSuccess: () {
+                              cubit.fetchAllStudents();
+                            },
+                          );
+                        },
+                      );
+                    },
+                    onDelete: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return DeleteDialog(
+                            student: state.students[index],
+                            onSuccess: () {
+                              cubit.fetchAllStudents();
+                            },
+                          );
+                        },
+                      );
+                    },
                   );
                 },
               ),
