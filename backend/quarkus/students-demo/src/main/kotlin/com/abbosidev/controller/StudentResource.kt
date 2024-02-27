@@ -38,13 +38,13 @@ class StudentResource {
 
     @DELETE
     @Path("/{id}")
-    fun deleteStudentById(@PathParam("id") id: Int) {
+    fun deleteStudentById(@PathParam("id") id: String) {
         studentService.deleteStudentById(id)
     }
 
     @GET
     @Path("/{id}")
-    fun getStudentById(@PathParam("id") id: Int): Student {
+    fun getStudentById(@PathParam("id") id: String): Student {
         val student = studentService.getStudentById(id)
             ?: throw RuntimeException("No student exists with this id!")
         return student

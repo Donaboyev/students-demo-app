@@ -9,7 +9,7 @@ interface StudentDao {
 
     fun updateStudent(student: Student)
 
-    fun deleteStudentById(id: Int)
+    fun deleteStudentById(id: String)
 
-    fun getStudentById(id: Int): Student?
+    fun getStudentById(id: String): Student?
 }

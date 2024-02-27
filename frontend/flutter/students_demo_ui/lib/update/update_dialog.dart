@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:students_demo_ui/student.dart';
-import 'package:students_demo_ui/update/update_cubit.dart';
+
+import '../student.dart';
+import 'update_cubit.dart';
 
 class UpdateDialog extends StatefulWidget {
   final Student student;
@@ -53,7 +54,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
             child: Container(
               width: 500,
               height: 300,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 24,
                 vertical: 16,
               ),
@@ -72,7 +73,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                       ),
                     ],
                   ),
@@ -90,7 +91,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   }
                                   return null;
                                 },
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Name',
                                 ),
                               ),
@@ -102,14 +103,14 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   return null;
                                 },
                                 controller: _courseController,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Course',
                                 ),
                               ),
                             ],
                           ),
                         ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
@@ -124,8 +125,8 @@ class _UpdateDialogState extends State<UpdateDialog> {
                       }
                     },
                     child: state.isUpdating
-                        ? CupertinoActivityIndicator()
-                        : Text('Update'),
+                        ? const CupertinoActivityIndicator()
+                        : const Text('Update'),
                   ),
                 ],
               ),

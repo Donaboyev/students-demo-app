@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:students_demo_ui/delete/delete_cubit.dart';
-import 'package:students_demo_ui/student.dart';
+
+import '../student.dart';
+import 'delete_cubit.dart';
 
 class DeleteDialog extends StatelessWidget {
   final Student student;
@@ -25,7 +26,7 @@ class DeleteDialog extends StatelessWidget {
             child: Container(
               width: 500,
               height: 400,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 24,
                 vertical: 16,
               ),
@@ -38,7 +39,7 @@ class DeleteDialog extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text(
                           'Are you sure to delete this student?',
                           textAlign: TextAlign.center,
@@ -52,31 +53,31 @@ class DeleteDialog extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                       ),
                     ],
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Student: ${student.id}',
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         'Name: ${student.name}',
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         'Course: ${student.course}',
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     onPressed: () {
                       cubit.deleteStudent(
@@ -88,8 +89,8 @@ class DeleteDialog extends StatelessWidget {
                       );
                     },
                     child: state.isLoading
-                        ? CupertinoActivityIndicator()
-                        : Text('Delete'),
+                        ? const CupertinoActivityIndicator()
+                        : const Text('Delete'),
                   ),
                 ],
               ),

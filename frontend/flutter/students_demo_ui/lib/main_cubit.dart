@@ -14,22 +14,6 @@ part 'main_state.dart';
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(const MainState());
 
-  // Future<void> fetchCurrentStudent(String? id) async {
-  //   emit(state.copyWith(isCurrentStudentLoading: true));
-  //   Student? student;
-  //   try {
-  //     final response = await http.get(
-  //       Uri.http('localhost:8080', '/students/$id'),
-  //     );
-  //     student = Student.fromJson(json.decode(response.body));
-  //   } catch (e) {
-  //     debugPrint('Fetching current student error: $e');
-  //   }
-  //   emit(
-  //     state.copyWith(isCurrentStudentLoading: false, currentStudent: student),
-  //   );
-  // }
-
   Future<void> fetchAllStudents() async {
     emit(state.copyWith(isAllStudentsLoading: true));
     List<Student> students = [];

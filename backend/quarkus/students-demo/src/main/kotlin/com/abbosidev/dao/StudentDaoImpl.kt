@@ -2,13 +2,18 @@ package com.abbosidev.dao
 
 import com.abbosidev.entity.Student
 import jakarta.enterprise.context.ApplicationScoped
+import java.util.*
+import kotlin.collections.HashMap
 
-private val students = HashMap<Int, Student>().apply {
+private val students = HashMap<String, Student>().apply {
+    val firstId = UUID.randomUUID().toString()
+    val secondId = UUID.randomUUID().toString()
+    val thirdId = UUID.randomUUID().toString()
     this.putAll(
         mapOf(
-            1 to Student(1, "Abbas", "Maths"),
-            2 to Student(2, "Javohir", "Physics"),
-            3 to Student(3, "Dilmurod", "English"),
+            firstId to Student(firstId, "Abbas", "Maths"),
+            secondId to Student(secondId, "Javohir", "Physics"),
+            thirdId to Student(thirdId, "Dilmurod", "English"),
         )
     )
 }
@@ -20,7 +25,9 @@ class StudentDaoImpl : StudentDao {
     }
 
     override fun insertNewStudent(student: Student) {
-        students[student.id] = student
+        val id = UUID.randomUUID().toString()
+        println("New student: $id")
+        students[id] = student.copy(id = id)
     }
 
     override fun updateStudent(student: Student) {
@@ -29,17 +36,17 @@ class StudentDaoImpl : StudentDao {
                 name = student.name,
                 course = student.course
             )
-            students[student.id] = updated
+            students[student.id!!] = updated
         }
     }
 
-    override fun deleteStudentById(id: Int) {
+    override fun deleteStudentById(id: String) {
         if (students.containsKey(id)) {
             students.remove(id)
         }
     }
 
-    override fun getStudentById(id: Int): Student? {
+    override fun getStudentById(id: String): Student? {
         return students[id]
     }
 }

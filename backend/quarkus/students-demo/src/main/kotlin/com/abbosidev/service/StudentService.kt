@@ -23,11 +23,11 @@ class StudentService {
         studentDao.updateStudent(student)
     }
 
-    fun deleteStudentById(id: Int) {
+    fun deleteStudentById(id: String) {
         studentDao.deleteStudentById(id)
     }
 
-    fun getStudentById(id: Int): Student? {
+    fun getStudentById(id: String): Student? {
         return studentDao.getStudentById(id)
     }
 }

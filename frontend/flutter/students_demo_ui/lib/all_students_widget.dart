@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:students_demo_ui/delete/delete_dialog.dart';
-import 'package:students_demo_ui/update/update_dialog.dart';
 
+import 'delete/delete_dialog.dart';
 import 'main_cubit.dart';
 import 'student_item.dart';
+import 'update/update_dialog.dart';
 
 class AllStudentsWidget extends StatefulWidget {
   const AllStudentsWidget({super.key});
@@ -23,7 +23,7 @@ class _AllStudentsWidgetState extends State<AllStudentsWidget> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Row(
               children: [
                 const Text(
