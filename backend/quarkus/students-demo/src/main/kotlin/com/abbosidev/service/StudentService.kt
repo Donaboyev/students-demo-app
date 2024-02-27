@@ -6,10 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
 
 @ApplicationScoped
-class StudentService {
-
-    @Inject
-    private lateinit var studentDao: StudentDao
+class StudentService(var studentDao: StudentDao) {
 
     fun getAllStudents(): Collection<Student> {
         return studentDao.getAllStudents()

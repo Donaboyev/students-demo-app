@@ -2,7 +2,6 @@ package com.abbosidev.controller
 
 import com.abbosidev.entity.Student
 import com.abbosidev.service.StudentService
-import jakarta.inject.Inject
 import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.DELETE
 import jakarta.ws.rs.GET
@@ -16,15 +15,10 @@ import jakarta.ws.rs.core.MediaType.APPLICATION_JSON
 @Path("/students")
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
-class StudentResource {
-
-    @Inject
-    private lateinit var studentService: StudentService
+class StudentResource(var studentService: StudentService) {
 
     @GET
-    fun getAllStudents(): Collection<Student> {
-        return studentService.getAllStudents()
-    }
+    fun getAllStudents() = studentService.getAllStudents()
 
     @POST
     fun insertStudent(student: Student) {
