@@ -9,9 +9,9 @@ interface StudentRepository {
 
     fun saveNewStudent(student: StudentDto)
 
-    fun updateStudent(id: Long, student: StudentDto)
+    fun updateStudent(id: Long, student: StudentDto): Int
 
-    fun deleteStudent(id: Long)
+    fun deleteStudent(id: Long): Boolean
 
     fun getStudentById(id: Long): Student?
 

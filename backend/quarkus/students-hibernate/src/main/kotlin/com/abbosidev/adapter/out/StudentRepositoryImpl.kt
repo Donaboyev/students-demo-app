@@ -14,13 +14,10 @@ class StudentRepositoryImpl : StudentRepository {
 
     override fun saveNewStudent(student: StudentDto) = Student.save(student)
 
-    override fun updateStudent(id: Long, student: StudentDto) {
-        Student.updateRow(id, student)
-    }
+    override fun updateStudent(id: Long, student: StudentDto) = Student.updateRow(id, student)
 
-    override fun deleteStudent(id: Long) {
-        Student.deleteById(id)
-    }
+
+    override fun deleteStudent(id: Long) = Student.deleteById(id)
 
     override fun getStudentById(id: Long) = Student.findById(id)
 
